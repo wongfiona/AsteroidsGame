@@ -17,9 +17,9 @@ public void draw()
 public void keyPressed()
 {
   if (keyCode == UP)
-    bob.accelerate(1);
+    bob.accelerate(0.1);
   else if (keyCode == DOWN)
-    bob.accelerate(-1);
+    bob.accelerate(-0.1);
   else if (keyCode == LEFT)
     bob.rotate(-15);
   else if (keyCode == RIGHT)
