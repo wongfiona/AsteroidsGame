@@ -25,6 +25,14 @@ public void keyPressed()
   else if (keyCode == RIGHT)
     bob.rotate(15);
 
+  //hyperspace
+  if (key == 'h') {
+    bob.setX((int)(Math.random()*width));
+    bob.setY((int)(Math.random()*height));
+    bob.setDirectionX(0);
+    bob.setDirectionY(0);
+    bob.setPointDirection((int)(Math.random()*360));
+  }
 }
 
 class SpaceShip extends Floater  
@@ -47,7 +55,7 @@ class SpaceShip extends Floater
     myCenterY = 300;
     myDirectionX = 0;
     myDirectionY = 0;
-    myPointDirection = 0;
+    myPointDirection = 270;
   }
   
     public void setX(int x) {myCenterX = x;}
