@@ -1,15 +1,25 @@
 //your variable declarations here
 SpaceShip bob;
+Star [] starry;
 
 public void setup() 
 {
   size(600, 600);
+  starry = new Star[150];
+  for (int i = 0; i < starry.length; i++)
+  {
+    starry[i] = new Star();
+  }
   bob = new SpaceShip();
 }
 
 public void draw() 
 {
   background(0);
+  for (int i = 0; i < starry.length; i++)
+  {
+    starry[i].draw();
+  }
   bob.show();
   bob.move();
 }
@@ -32,6 +42,23 @@ public void keyPressed()
     bob.setDirectionX(0);
     bob.setDirectionY(0);
     bob.setPointDirection((int)(Math.random()*360));
+  }
+}
+
+class Star
+{
+  private int randX, randY, randColor;
+  public Star()
+  {
+    randX = (int)(Math.random()*width);
+    randY = (int)(Math.random()*height);
+    randColor = color(255, 255, (int)(Math.random()*255));
+  }
+  public void draw()
+  {
+    noStroke();
+    fill(randColor);
+    ellipse(randX, randY, 3, 3);
   }
 }
 
