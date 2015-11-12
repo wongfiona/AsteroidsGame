@@ -5,7 +5,7 @@ Star [] starry;
 public void setup() 
 {
   size(600, 600);
-  starry = new Star[150];
+  starry = new Star[200];
   for (int i = 0; i < starry.length; i++)
   {
     starry[i] = new Star();
@@ -47,18 +47,18 @@ public void keyPressed()
 
 class Star
 {
-  private int randX, randY, randColor;
+  private int randX, randY, randRadius;
   public Star()
   {
     randX = (int)(Math.random()*width);
     randY = (int)(Math.random()*height);
-    randColor = color(255, 255, (int)(Math.random()*255));
+    randRadius = (int)(Math.random()*2)+2;
   }
   public void draw()
   {
     noStroke();
-    fill(randColor);
-    ellipse(randX, randY, 3, 3);
+    fill(255);
+    ellipse(randX, randY, randRadius, randRadius);
   }
 }
 
