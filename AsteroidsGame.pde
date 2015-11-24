@@ -11,7 +11,7 @@ public void setup()
   {
     stars[i] = new Star();
   }
-  asteroids = new Asteroid[30];
+  asteroids = new Asteroid[20];
   for (int i = 0; i < asteroids.length; i++)
   {
     asteroids[i] = new Asteroid();
@@ -58,18 +58,17 @@ public void keyPressed()
 
 class Star
 {
-  private int randX, randY, randRadius, randColor;
+  private int randX, randY, randRadius;
   public Star()
   {
     randX = (int)(Math.random()*width);
     randY = (int)(Math.random()*height);
     randRadius = (int)(Math.random()*2)+2;
-    randColor = color(255, 255, (int)(Math.random()*255));
   }
   public void draw()
   {
     noStroke();
-    fill(randColor);
+    fill(255, 255, 255, random(50, 100));
     ellipse(randX, randY, randRadius, randRadius);
   }
 }
@@ -101,8 +100,8 @@ class Asteroid extends Floater
     myColor = color(190, 190, 195);
     myCenterX = (int)(Math.random()*600);
     myCenterY = (int)(Math.random()*600);
-    myDirectionX = 0;
-    myDirectionY = 0;
+    myDirectionX = (int)(Math.random()*3)-1;
+    myDirectionY = (int)(Math.random()*3)-1;
     myPointDirection = 180;
   }
   public void move()
