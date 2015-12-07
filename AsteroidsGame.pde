@@ -1,7 +1,7 @@
 //your variable declarations here
 SpaceShip bob;
 Star [] stars;
-ArrayList <Asteroid> meh;
+ArrayList <Asteroid> asteroids;
 
 public void setup() 
 {
@@ -11,14 +11,14 @@ public void setup()
   {
     stars[i] = new Star();
   }
-  // meh = new Asteroid[20];
-  // for (int i = 0; i < meh.length; i++)
+  // asteroids = new Asteroid[20];
+  // for (int i = 0; i < asteroids.length; i++)
   // {
-  //   meh[i] = new Asteroid();
+  //   asteroids[i] = new Asteroid();
   // }
-  meh = new ArrayList<Asteroid>();
+  asteroids = new ArrayList<Asteroid>();
   for (int i = 0; i < 20; i++)
-    meh.add(new Asteroid());
+    asteroids.add(new Asteroid());
   bob = new SpaceShip();
 }
 
@@ -29,14 +29,12 @@ public void draw()
   {
     stars[i].draw();
   }
-  for (int i = 0; i < meh.size(); i++)
+  for (int i = 0; i < asteroids.size(); i++)
   {
-    meh.get(i).show();
-    meh.get(i).move();
-    if (dist(bob.getX(), bob.getY(), meh.get(i).getX(), meh.get(i).getY()) < 20)
-    {
-      meh.remove(i);
-    }
+    asteroids.get(i).show();
+    asteroids.get(i).move();
+    if (dist(bob.getX(), bob.getY(), asteroids.get(i).getX(), asteroids.get(i).getY()) < 20)
+      asteroids.remove(i);
   }
   bob.show();
   bob.move();
@@ -107,8 +105,14 @@ class Asteroid extends Floater
     myColor = color(190, 190, 195);
     myCenterX = (int)(Math.random()*600);
     myCenterY = (int)(Math.random()*600);
-    myDirectionX = (int)(Math.random()*3)-1;
-    myDirectionY = (int)(Math.random()*3)-1;
+    if (Math.random() < 0.5)
+      myDirectionX = (int)(Math.random()+1);
+    else 
+      myDirectionX = -(int)(Math.random()+1);
+    if (Math.random() < 0.5)
+      myDirectionY = (int)(Math.random()+1);
+    else 
+      myDirectionY = -(int)(Math.random()+1);
     myPointDirection = 180;
   }
   public void move()
