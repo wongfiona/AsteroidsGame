@@ -111,8 +111,8 @@ class Bullet extends Floater
   public void show()
   {
     noStroke();
-    fill(120, 160, 200);
-    ellipse((float)myCenterX, (float)myCenterY, 8, 8);
+    fill(120, 160, 200, 300);
+    ellipse((float)myCenterX, (float)myCenterY, 10, 10);
   }
   public void move()
   {
@@ -155,7 +155,7 @@ class Asteroid extends Floater
     yCorners[4] = 15;
     xCorners[5] = -18;
     yCorners[5] = 0;
-    myColor = color(190, 190, 195);
+    myColor = color(128);
     noFill();
     myCenterX = (int)(Math.random()*600);
     myCenterY = (int)(Math.random()*600);
