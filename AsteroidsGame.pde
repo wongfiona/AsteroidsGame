@@ -11,7 +11,7 @@ public void setup()
   for (int i = 0; i < stars.length; i++)
     stars[i] = new Star();
   asteroids = new ArrayList<Asteroid>();
-  for (int i = 0; i < 20; i++)
+  for (int i = 0; i < 15; i++)
     asteroids.add(new Asteroid());
   bob = new SpaceShip();
   bullets = new ArrayList<Bullet>();
@@ -57,7 +57,8 @@ public void keyPressed()
   else if (keyCode == RIGHT)
     bob.rotate(15);
   //hyperspace
-  if (key == 'h') {
+  if (key == 'h') 
+  {
     bob.setX((int)(Math.random()*width));
     bob.setY((int)(Math.random()*height));
     bob.setDirectionX(0);
@@ -81,7 +82,7 @@ class Star
   public void draw()
   {
     noStroke();
-    fill(255, 255, 255, random(50, 100));
+    fill(255, 255, 0, random(50, 150));
     ellipse(randX, randY, randRadius, randRadius);
   }
 }
@@ -110,8 +111,8 @@ class Bullet extends Floater
   public void show()
   {
     noStroke();
-    fill(0, 255, 255);
-    ellipse((float)myCenterX, (float)myCenterY, 5, 5);
+    fill(120, 160, 200);
+    ellipse((float)myCenterX, (float)myCenterY, 8, 8);
   }
   public void move()
   {
@@ -142,18 +143,18 @@ class Asteroid extends Floater
     corners = 6;
     xCorners = new int[corners];
     yCorners = new int[corners];
-    xCorners[0] = -13;
-    yCorners[0] = -10;
-    xCorners[1] = 9;
-    yCorners[1] = -10;
-    xCorners[2] = 15;
-    yCorners[2] = 2;
-    xCorners[3] = 8;
-    yCorners[3] = 12;
-    xCorners[4] = -13;
-    yCorners[4] = 10;
-    xCorners[5] = -7;
-    yCorners[5] = 2;
+    xCorners[0] = -10;
+    yCorners[0] = -15;
+    xCorners[1] = 10;
+    yCorners[1] = -15;
+    xCorners[2] = 18;
+    yCorners[2] = 0;
+    xCorners[3] = 10;
+    yCorners[3] = 15;
+    xCorners[4] = -10;
+    yCorners[4] = 15;
+    xCorners[5] = -18;
+    yCorners[5] = 0;
     myColor = color(190, 190, 195);
     noFill();
     myCenterX = (int)(Math.random()*600);
