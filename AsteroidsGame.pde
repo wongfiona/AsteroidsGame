@@ -2,49 +2,47 @@
 SpaceShip bob;
 Star [] stars;
 ArrayList <Asteroid> asteroids;
-ArrayList <Bullet> bangtan;
+ArrayList <Bullet> bullets;
 
 public void setup() 
 {
   size(600, 600);
-  //stars
   stars = new Star[200];
   for (int i = 0; i < stars.length; i++)
     stars[i] = new Star();
-  //asteroids
   asteroids = new ArrayList<Asteroid>();
   for (int i = 0; i < 20; i++)
     asteroids.add(new Asteroid());
-  //spaceship
   bob = new SpaceShip();
-  //bullets
-  bangtan = new ArrayList<Bullet>();
+  bullets = new ArrayList<Bullet>();
 }
 
 public void draw() 
 {
   background(0);
-  //stars
   for (int i = 0; i < stars.length; i++)
     stars[i].draw();
-  //asteroids
   for (int i = 0; i < asteroids.size(); i++)
   {
     asteroids.get(i).show();
     asteroids.get(i).move();
     if (dist(bob.getX(), bob.getY(), asteroids.get(i).getX(), asteroids.get(i).getY()) < 20)
       asteroids.remove(i);
+    for (int j = 0; j < bullets.size(); j++)
+      {
+        if (dist(asteroids.get(i).getX(), asteroids.get(i).getY(), bullets.get(j).getX(), bullets.get(j).getY()) < 20)
+         {
+           asteroids.remove(i);
+           bullets.remove(j);
+         }
+      }
   }
-  //spaceship
   bob.show();
   bob.move();
-  //bullets
-  for (int i = 0; i < bangtan.size(); i++)
+  for (int i = 0; i < bullets.size(); i++)
   {
-    bangtan.get(i).show();
-    bangtan.get(i).move();
-    // if (dist(bob.getX(), bob.getY(), bangtan.get(i).getX(), bangtan.get(i).getY()) < 20)
-    //   bangtan.remove(i);
+    bullets.get(i).show();
+    bullets.get(i).move();
   }
 }
 
@@ -68,7 +66,7 @@ public void keyPressed()
   }
   //bullets
   if (keyCode == 32)
-    bangtan.add(new Bullet(bob));
+    bullets.add(new Bullet(bob));
 }
 
 class Star
@@ -78,7 +76,7 @@ class Star
   {
     randX = (int)(Math.random()*width);
     randY = (int)(Math.random()*height);
-    randRadius = (int)(Math.random()*2)+2;
+    randRadius = (int)(Math.random()*3)+2;
   }
   public void draw()
   {
@@ -109,12 +107,16 @@ class Bullet extends Floater
   myDirectionX = 5 * Math.cos(dRadians) + theShip.getDirectionX();
   myDirectionY = 5 * Math.sin(dRadians) + theShip.getDirectionY();
   }
-
   public void show()
   {
     noStroke();
     fill(0, 255, 255);
     ellipse((float)myCenterX, (float)myCenterY, 5, 5);
+  }
+  public void move()
+  {
+    myCenterX += myDirectionX;
+    myCenterY += myDirectionY;
   }
 }
 
@@ -152,9 +154,7 @@ class Asteroid extends Floater
     yCorners[4] = 10;
     xCorners[5] = -7;
     yCorners[5] = 2;
-    setStroke(3);
-    stroke(190, 190, 195);
-    //myColor = color(190, 190, 195);
+    myColor = color(190, 190, 195);
     noFill();
     myCenterX = (int)(Math.random()*600);
     myCenterY = (int)(Math.random()*600);
@@ -288,4 +288,3 @@ abstract class Floater //Do NOT modify the Floater class! Make changes in the Sp
     endShape(CLOSE);  
   }   
 } 
-
