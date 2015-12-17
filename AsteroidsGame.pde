@@ -6,7 +6,7 @@ ArrayList <Bullet> bullets;
 
 public void setup() 
 {
-  size(700, 500);
+  size(800, 600);
   stars = new Star[200];
   for (int i = 0; i < stars.length; i++)
     stars[i] = new Star();
