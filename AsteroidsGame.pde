@@ -44,6 +44,10 @@ public void draw()
     bullets.get(i).show();
     bullets.get(i).move();
   }
+  
+  textSize(15);
+  fill(255);
+  text("Asteroids Left: " + asteroids.size(), 650, 25);
 }
 
 public void keyPressed()
