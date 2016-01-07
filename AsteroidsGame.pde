@@ -34,6 +34,7 @@ public void draw()
          {
            asteroids.remove(i);
            bullets.remove(j);
+           break;
          }
       }
   }
